@@ -7,7 +7,7 @@ namespace myapp.Services.CharacterServices
 {
     public interface ICharacterServices
     {
-         Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters();
+         Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters(int userId);
          Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id);
          Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDto newCharacter);
 
