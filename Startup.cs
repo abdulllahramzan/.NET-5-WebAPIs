@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using myapp.Data;
 using myapp.Services.CharacterServices;
+using myapp.Services.WeaponService;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace myapp
@@ -63,7 +64,8 @@ namespace myapp
                             ValidateAudience = false
                         };
                 });
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IWeaponService, WeaponService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

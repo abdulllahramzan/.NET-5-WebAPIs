@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
 namespace myapp.Models
 {
     public class Character
@@ -17,5 +20,10 @@ namespace myapp.Models
         public RpgClass Class { get; set; } = RpgClass.Knight;  
 
         public User User { get; set; }
+
+        public Weapon Weapon { get; set; }
+        public List<Skill> Skill { get; set; }
+
+ 
     } 
 }

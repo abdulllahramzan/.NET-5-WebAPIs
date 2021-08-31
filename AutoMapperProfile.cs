@@ -1,5 +1,7 @@
 using AutoMapper;
 using myapp.Dtos.Character;
+using myapp.Dtos.Skill;
+using myapp.Dtos.Weapon;
 using myapp.Models;
 
 namespace myapp
@@ -10,6 +12,8 @@ namespace myapp
         {
             CreateMap<Character, GetCharacterDto>();
             CreateMap<AddCharacterDto, Character >();
+            CreateMap<Weapon, GetWeaponDto>();
+            CreateMap<Skill, GetSkillDto>();
         }
     }
 }
