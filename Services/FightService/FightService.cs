@@ -163,8 +163,8 @@ namespace myapp.Services.FightService
                                 damage = DoSkillAttack(attacker, opponent, skill);
                             }
 
-                            response.Data.Log
-                            .Add($"{attacker.Name} attacks {opponent.Name} using {attackUsed} with {(damage >= 0 ? damage : 0 )} damage.");
+                     response.Data.Log
+                    .Add($"{attacker.Name} attacks {opponent.Name} using {attackUsed} with {(damage >= 0 ? damage : 0 )} damage.");
 
                             if(opponent.Hitpoints <= 0 )
                             {
@@ -174,8 +174,7 @@ namespace myapp.Services.FightService
                                 response.Data.Log.Add($"{opponent.Name} has been defeated !");
                                 response.Data.Log.Add($"{attacker.Name} wins with {attacker.Hitpoints} Hp left !");
                                 break;
-                            }
-
+                            }   
                     }
                }
 
@@ -185,6 +184,7 @@ namespace myapp.Services.FightService
                     c.Hitpoints = 100;
                 }
                );
+               await _context.SaveChangesAsync();
            }
 
            catch (Exception ex)
