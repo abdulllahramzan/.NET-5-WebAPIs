@@ -16,12 +16,12 @@ namespace myapp.Data
 
         public DbSet<Skill> Skills{ get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+               protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Skill>().HasData(
-                new Skill {Id = 1, Name = "Sword", Damage =20},
-                new Skill {Id = 2, Name = "FireBall", Damage =40},
-                new Skill {Id = 3, Name = "Archery", Damage =30}    
+                new Skill {Id = 1, Name = "Sword", Damage =10},
+                new Skill {Id = 2, Name = "FireBall", Damage =20},
+                new Skill {Id = 3, Name = "Archery", Damage =30}
             );
         }
     }
