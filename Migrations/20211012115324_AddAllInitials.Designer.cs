@@ -10,8 +10,8 @@ using myapp.Data;
 namespace myapp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210830113916_Weapon")]
-    partial class Weapon
+    [Migration("20211012115324_AddAllInitials")]
+    partial class AddAllInitials
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace myapp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CharacterSkill", b =>
+                {
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("CharacterSkill");
+                });
 
             modelBuilder.Entity("myapp.Models.Character", b =>
                 {
@@ -31,7 +46,13 @@ namespace myapp.Migrations
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
+                    b.Property<int>("Defeats")
+                        .HasColumnType("int");
+
                     b.Property<int>("Defense")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("Hitpoints")
@@ -49,11 +70,52 @@ namespace myapp.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Victories")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("myapp.Models.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Damage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Damage = 10,
+                            Name = "Sword"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Damage = 20,
+                            Name = "FireBall"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Damage = 30,
+                            Name = "Archery"
+                        });
                 });
 
             modelBuilder.Entity("myapp.Models.User", b =>
@@ -99,6 +161,21 @@ namespace myapp.Migrations
                         .IsUnique();
 
                     b.ToTable("Weapons");
+                });
+
+            modelBuilder.Entity("CharacterSkill", b =>
+                {
+                    b.HasOne("myapp.Models.Character", null)
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("myapp.Models.Skill", null)
+                        .WithMany()
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("myapp.Models.Character", b =>

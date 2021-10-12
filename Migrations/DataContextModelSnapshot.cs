@@ -21,13 +21,13 @@ namespace myapp.Migrations
 
             modelBuilder.Entity("CharacterSkill", b =>
                 {
-                    b.Property<int>("CharactersId")
+                    b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
 
-                    b.HasKey("CharactersId", "SkillId");
+                    b.HasKey("CharacterId", "SkillId");
 
                     b.HasIndex("SkillId");
 
@@ -99,13 +99,13 @@ namespace myapp.Migrations
                         new
                         {
                             Id = 1,
-                            Damage = 20,
+                            Damage = 10,
                             Name = "Sword"
                         },
                         new
                         {
                             Id = 2,
-                            Damage = 40,
+                            Damage = 20,
                             Name = "FireBall"
                         },
                         new
@@ -165,7 +165,7 @@ namespace myapp.Migrations
                 {
                     b.HasOne("myapp.Models.Character", null)
                         .WithMany()
-                        .HasForeignKey("CharactersId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
